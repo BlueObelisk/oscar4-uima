@@ -11,7 +11,7 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 
 /** Abstract type for fragmental document annotations. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:38 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:44 BST 2010
  * @generated */
 public class Fragment_Type extends DocumentClassAnnotation_Type {
   /** @generated */

@@ -12,7 +12,7 @@ import org.apache.uima.cas.Type;
 import org.u_compare.shared.label.penn.bracket.Phrase_Type;
 
 /** Unknown, uncertain, or unbracketable
- * Updated by JCasGen Wed Jul 28 16:01:38 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class X_Type extends Phrase_Type {
   /** @generated */

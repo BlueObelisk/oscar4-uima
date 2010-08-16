@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** Base abstract type for annotations with discontinuous regions. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:35 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:41 BST 2010
  * @generated */
 public class DiscontinuousAnnotation_Type extends Annotation_Type {
   /** @generated */
@@ -64,7 +64,7 @@ public class DiscontinuousAnnotation_Type extends Annotation_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_fragments), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_fragments), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_fragments), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_fragments), i);
   }
    
   /** @generated */ 

@@ -12,7 +12,7 @@ import org.apache.uima.cas.Type;
 import org.u_compare.shared.document.Fragment_Type;
 
 /** 
- * Updated by JCasGen Wed Jul 28 16:01:38 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:44 BST 2010
  * @generated */
 public class Affiliation_Type extends Fragment_Type {
   /** @generated */

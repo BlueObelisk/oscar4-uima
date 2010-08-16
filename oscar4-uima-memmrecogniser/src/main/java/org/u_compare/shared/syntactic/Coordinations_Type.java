@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** Contains an array of constituents which are marked as Coordinations. Corresponds to syn="COOD" in the Genia Treebank.
- * Updated by JCasGen Wed Jul 28 16:01:37 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class Coordinations_Type extends TOP_Type {
   /** @generated */
@@ -64,7 +64,7 @@ public class Coordinations_Type extends TOP_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_coordinationMarkedConstituents), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_coordinationMarkedConstituents), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_coordinationMarkedConstituents), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_coordinationMarkedConstituents), i);
   }
    
   /** @generated */ 

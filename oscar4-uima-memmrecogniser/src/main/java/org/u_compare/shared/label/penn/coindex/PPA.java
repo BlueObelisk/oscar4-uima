@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** Permanent Predictable Ambiguity<BR></BR>
- * Updated by JCasGen Wed Jul 28 16:01:38 BST 2010
- * XML source: /home/keybo/workspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER.xml
+ * Updated by JCasGen Mon Aug 16 14:00:44 BST 2010
+ * XML source: /home/lezan/galWorkspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER1.xml
  * @generated */
 public class PPA extends NullElementLabel {
   /** @generated

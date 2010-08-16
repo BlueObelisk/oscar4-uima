@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
-    <artifactId>oscar4-uima</artifactId>
-    <version>4.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
+	<artifactId>oscar4-uima</artifactId>
+	<version>4.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <name>oscar4-uima-parent</name>
+	<name>oscar4-uima-parent</name>
+	<properties>
+		<uima.version>2.2.2-incubating</uima.version>
+	</properties>
+	<modules>
+		<module>oscar4-uima-core</module>
+		<module>oscar4-uima-tokeniser</module>
+		<module>oscar4-uima-memmrecogniser</module>
+	</modules>
 
-    <modules>
-        <module>oscar4-uima-core</module>
-        <module>oscar4-uima-tokeniser</module>
-        <module>oscar4-uima-memmrecogniser</module>
-    </modules>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <repositories>
-        <repository>
-            <id>ucc-repo</id>
-            <name>UCC Repository</name>
-            <url>https://maven.ch.cam.ac.uk/m2repo</url>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>ucc-repo</id>
+			<name>UCC Repository</name>
+			<url>https://maven.ch.cam.ac.uk/m2repo</url>
+		</repository>
+	</repositories>
 
 </project>

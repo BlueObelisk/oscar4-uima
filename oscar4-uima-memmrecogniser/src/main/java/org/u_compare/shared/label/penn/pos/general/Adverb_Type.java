@@ -12,7 +12,7 @@ import org.apache.uima.cas.Type;
 import org.u_compare.shared.label.penn.pos.PennPOS_Type;
 
 /** Abstract Adverb
- * Updated by JCasGen Wed Jul 28 16:01:36 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class Adverb_Type extends PennPOS_Type {
   /** @generated */

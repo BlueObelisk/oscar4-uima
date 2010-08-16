@@ -12,7 +12,7 @@ import org.apache.uima.cas.Type;
 import org.u_compare.shared.label.penn.bracket.Clause_Type;
 
 /** Relative clauses and subordinate clauses, including indirect questions
- * Updated by JCasGen Wed Jul 28 16:01:37 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class SBAR_Type extends Clause_Type {
   /** @generated */

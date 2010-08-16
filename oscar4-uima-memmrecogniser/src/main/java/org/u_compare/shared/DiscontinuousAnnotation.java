@@ -12,8 +12,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** Base abstract type for annotations with discontinuous regions. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:35 BST 2010
- * XML source: /home/keybo/workspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER.xml
+ * Updated by JCasGen Mon Aug 16 14:00:41 BST 2010
+ * XML source: /home/lezan/galWorkspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER1.xml
  * @generated */
 public class DiscontinuousAnnotation extends Annotation {
   /** @generated

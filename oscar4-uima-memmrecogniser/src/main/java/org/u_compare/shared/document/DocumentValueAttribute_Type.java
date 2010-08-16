@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Assumed to be used to correspond to an attribute name-value pair (CDATA in case of DTD). <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:36 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class DocumentValueAttribute_Type extends DocumentAttribute_Type {
   /** @generated */
