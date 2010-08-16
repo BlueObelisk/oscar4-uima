@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** THIS TYPE WILL BE CHANGED TO INHERIT APACHE UIMA ANNOTATIONMETADATA TYPE, WHEN IT RELEASED. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:35 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:41 BST 2010
  * @generated */
 public class AnnotationMetadata_Type extends TOP_Type {
   /** @generated */

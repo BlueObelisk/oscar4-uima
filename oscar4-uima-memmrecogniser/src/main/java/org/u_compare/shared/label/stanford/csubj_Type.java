@@ -11,7 +11,7 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 
 /** Stanford Dependency: csubj
- * Updated by JCasGen Wed Jul 28 16:01:38 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:44 BST 2010
  * @generated */
 public class csubj_Type extends StanfordDependencyLabel_Type {
   /** @generated */

@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** 
- * Updated by JCasGen Wed Jul 28 16:01:38 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:44 BST 2010
  * @generated */
 public class ComparisonSet_Type extends AnnotationGroup_Type {
   /** @generated */
@@ -63,7 +63,7 @@ public class ComparisonSet_Type extends AnnotationGroup_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_goldAnnotations), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_goldAnnotations), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_goldAnnotations), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_goldAnnotations), i);
   }
    
   /** @generated */ 
@@ -100,7 +100,7 @@ public class ComparisonSet_Type extends AnnotationGroup_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_testAnnotations), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_testAnnotations), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_testAnnotations), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_testAnnotations), i);
   }
    
   /** @generated */ 
@@ -137,7 +137,7 @@ public class ComparisonSet_Type extends AnnotationGroup_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_matchedAnnotations), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_matchedAnnotations), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_matchedAnnotations), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_matchedAnnotations), i);
   }
    
   /** @generated */ 

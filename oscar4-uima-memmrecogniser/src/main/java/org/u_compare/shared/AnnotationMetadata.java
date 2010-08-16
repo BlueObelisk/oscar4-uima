@@ -11,8 +11,8 @@ import org.apache.uima.jcas.cas.TOP;
 
 
 /** THIS TYPE WILL BE CHANGED TO INHERIT APACHE UIMA ANNOTATIONMETADATA TYPE, WHEN IT RELEASED. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:35 BST 2010
- * XML source: /home/keybo/workspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER.xml
+ * Updated by JCasGen Mon Aug 16 14:00:41 BST 2010
+ * XML source: /home/lezan/galWorkspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER1.xml
  * @generated */
 public class AnnotationMetadata extends TOP {
   /** @generated

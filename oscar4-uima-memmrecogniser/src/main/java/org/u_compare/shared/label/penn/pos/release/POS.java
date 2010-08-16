@@ -11,8 +11,8 @@ import org.u_compare.shared.label.penn.pos.PennPOS;
 
 
 /** Possessive Ending
- * Updated by JCasGen Wed Jul 28 16:01:36 BST 2010
- * XML source: /home/keybo/workspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER.xml
+ * Updated by JCasGen Mon Aug 16 14:00:42 BST 2010
+ * XML source: /home/lezan/galWorkspace/oscar4-uima/oscar4-uima-memmrecogniser/src/main/resources/uk/ac/nactem/cheta/uimaDescriptor/OscarMER1.xml
  * @generated */
 public class POS extends PennPOS {
   /** @generated

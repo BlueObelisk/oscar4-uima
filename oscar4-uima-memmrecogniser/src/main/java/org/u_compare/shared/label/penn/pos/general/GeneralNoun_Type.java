@@ -11,7 +11,7 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 
 /** Abstract General Noun
- * Updated by JCasGen Wed Jul 28 16:01:36 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:42 BST 2010
  * @generated */
 public class GeneralNoun_Type extends Noun_Type {
   /** @generated */

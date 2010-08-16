@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Base abstract type for annotations with AnnotationMetadata. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:35 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:41 BST 2010
  * @generated */
 public class BaseAnnotation_Type extends DiscontinuousAnnotation_Type {
   /** @generated */

@@ -11,7 +11,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
 
 /** Ontology
- * Updated by JCasGen Wed Jul 28 16:01:37 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class ONT_Type extends ChemicalEntity_Type {
   /** @generated */

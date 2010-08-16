@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Assumed to be used to express an instance of a document tag. <br></br>
- * Updated by JCasGen Wed Jul 28 16:01:36 BST 2010
+ * Updated by JCasGen Mon Aug 16 14:00:43 BST 2010
  * @generated */
 public class DocumentClassAnnotation_Type extends DocumentAnnotation_Type {
   /** @generated */
@@ -63,7 +63,7 @@ public class DocumentClassAnnotation_Type extends DocumentAnnotation_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_attributes), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_attributes), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_attributes), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_attributes), i);
   }
    
   /** @generated */ 
@@ -100,7 +100,7 @@ public class DocumentClassAnnotation_Type extends DocumentAnnotation_Type {
     if (lowLevelTypeChecks)
       return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_elements), i, true);
     jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_elements), i);
-	return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_elements), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_elements), i);
   }
    
   /** @generated */ 
