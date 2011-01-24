@@ -1,7 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>wwmm</groupId>
+		<artifactId>wwmm-parent</artifactId>
+		<version>1</version>
+	</parent>
+
 
 	<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
 	<artifactId>oscar4-uima</artifactId>
@@ -11,15 +18,40 @@
 	<name>oscar4-uima-parent</name>
 	<properties>
 		<uima.version>2.2.2-incubating</uima.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<modules>
-		<module>oscar4-uima-core</module>
 		<module>oscar4-uima-tokeniser</module>
 		<module>oscar4-uima-memmrecogniser</module>
 	</modules>
 
+	<repositories>
+		<repository>
+			<id>ucc-repo</id>
+			<name>UCC Repository</name>
+			<url>https://maven.ch.cam.ac.uk/m2repo</url>
+		</repository>
+		<repository>
+			<id>jexample-repo</id>
+			<name>JExample Maven repository</name>
+			<url>http://scg.unibe.ch/download/jexample/maven/</url>
+		</repository>
+		<repository>
+			<id>UCompare-repo</id>
+			<name>U-Compare Maven repository</name>
+			<url>http://u-compare.org/repository/</url>
+		</repository>
+
+	</repositories>
+
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>-Xms512m -Xmx1024m -verbose:gc</argLine>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -30,12 +62,108 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>ucc-repo</id>
-			<name>UCC Repository</name>
-			<url>https://maven.ch.cam.ac.uk/m2repo</url>
-		</repository>
-	</repositories>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+							<report>summary</report>
+							<report>dependencies</report>
+							<report>project-team</report>
+							<report>license</report>
+							<report>scm</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<targetJdk>1.5</targetJdk>
+					<linkXref>true</linkXref>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+	<dependencies>
+		<dependency>
+			<groupId>org.uimafit</groupId>
+			<artifactId>uimafit</artifactId>
+			<version>0.9.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
+			<artifactId>oscar4-tokenizer</artifactId>
+			<version>4.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
+			<artifactId>oscar4</artifactId>
+			<version>4.0-SNAPSHOT</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
+			<artifactId>oscar4-memmrecogniser</artifactId>
+			<version>4.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-core</artifactId>
+			<version>${uima.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-cpe</artifactId>
+			<version>${uima.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-document-annotation</artifactId>
+			<version>${uima.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-tools</artifactId>
+			<version>${uima.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.portals.jetspeed-2</groupId>
+			<artifactId>jetspeed-fileutils-maven-plugin</artifactId>
+			<version>2.2.0</version>
+			<type>maven-plugin</type>
+		</dependency>
+
+
+		<dependency>
+			<groupId>u-compare</groupId>
+			<artifactId>u-compare</artifactId>
+			<version>1.1.3</version>
+		</dependency>
+	</dependencies>
 
 </project>
