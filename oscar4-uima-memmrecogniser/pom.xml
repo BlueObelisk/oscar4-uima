@@ -1,115 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
-        <artifactId>oscar4-uima</artifactId>
-        <version>4.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
+		<artifactId>oscar4-uima</artifactId>
+		<version>4.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>oscar4-uima-memmrecogniser</artifactId>
-    <name>oscar4-uima-memmrecogniser</name>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <argLine>-Xms512m -Xmx1024m -verbose:gc</argLine>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<artifactId>oscar4-uima-memmrecogniser</artifactId>
+	<name>oscar4-uima-memmrecogniser</name>
+	<dependencies>
+		<dependency>
+			<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
+			<artifactId>oscar4-memmrecogniser</artifactId>
+			<version>4.0-SNAPSHOT</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
-            <artifactId>oscar4-memmrecogniser</artifactId>
-            <version>${version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>openNLP</groupId>
-            <artifactId>openNLP</artifactId>
-            <version>1.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.2-FINAL</version>
-        </dependency>
-        <dependency>
-            <groupId>wwmm-expediency</groupId>
-            <artifactId>maxent</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.brics</groupId>
-            <artifactId>automaton</artifactId>
-            <version>1.11-2</version>
-            <!-- from local repository -->
-        </dependency>
-        <dependency>
-            <groupId>commons-math</groupId>
-            <artifactId>commons-math</artifactId>
-            <version>20040218.045431</version>
-        </dependency>
-        <dependency>
-            <groupId>trove</groupId>
-            <artifactId>trove</artifactId>
-            <version>1.1-beta-5</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-discovery</groupId>
-            <artifactId>commons-discovery</artifactId>
-            <version>20040218.194635</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mod4j.org.apache.commons</groupId>
-            <artifactId>lang</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-
-    <dependency>
-            <groupId>org.apache.uima</groupId>
-            <artifactId>uimaj-core</artifactId>
-            <version>${uima.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.uima</groupId>
-            <artifactId>uimaj-cpe</artifactId>
-            <version>${uima.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.uima</groupId>
-            <artifactId>uimaj-document-annotation</artifactId>
-            <version>${uima.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.uima</groupId>
-            <artifactId>uimaj-tools</artifactId>
-            <version>${uima.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.u-compare</groupId>
-            <artifactId>u-compare</artifactId>
-            <version>X</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.7</version>
-        </dependency>
-    </dependencies>
 
 </project>

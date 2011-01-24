@@ -2,16 +2,10 @@ package uk.ac.nactem.cheta;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import nu.xom.Builder;
-import nu.xom.Document;
-import nu.xom.ParsingException;
-import nu.xom.ValidityException;
 
 import org.apache.uima.analysis_engine.ResultSpecification;
 import org.apache.uima.analysis_engine.annotator.AnnotatorConfigurationException;
@@ -25,15 +19,18 @@ import org.apache.uima.examples.SourceDocumentInformation;
 import org.apache.uima.jcas.JCas;
 import org.u_compare.shared.AnnotationMetadata;
 
+import uk.ac.cam.ch.wwmm.oscar.document.IProcessingDocument;
+import uk.ac.cam.ch.wwmm.oscar.document.IToken;
+import uk.ac.cam.ch.wwmm.oscar.document.ITokenSequence;
+import uk.ac.cam.ch.wwmm.oscar.document.NamedEntity;
+import uk.ac.cam.ch.wwmm.oscar.document.ProcessingDocument;
+import uk.ac.cam.ch.wwmm.oscar.document.ProcessingDocumentFactory;
+import uk.ac.cam.ch.wwmm.oscar.document.Token;
+import uk.ac.cam.ch.wwmm.oscar.document.TokenSequence;
 import uk.ac.cam.ch.wwmm.oscarMEMM.MEMMRecogniser;
-import uk.ac.cam.ch.wwmm.oscarMEMM.memm.document.NamedEntity;
-import uk.ac.cam.ch.wwmm.oscarMEMM.memm.document.ProcessingDocument;
-import uk.ac.cam.ch.wwmm.oscarMEMM.memm.document.ProcessingDocumentFactory;
-import uk.ac.cam.ch.wwmm.oscarMEMM.memm.document.Token;
-import uk.ac.cam.ch.wwmm.oscarMEMM.memm.document.TokenSequence;
-
+import uk.ac.cam.ch.wwmm.oscartokeniser.Tokeniser;
 public class OscarMER extends JTextAnnotator_ImplBase {
-	private MEMMRecogniser MER;
+	private   MEMMRecogniser MER;
 	ProcessingDocument procDoc = null;
 	java.util.List<NamedEntity> Entities;
 	String localNE;
@@ -49,13 +46,7 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 			throws AnnotatorProcessException {
 
 		String docText = aJCas.getDocumentText();
-		// try {
-		// byte[] docArray = docText.getBytes("ISO-8859-1");
-		// docText = new String(docArray);
-		// } catch (UnsupportedEncodingException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
+
 		FSIterator it = aJCas
 				.getAnnotationIndex(SourceDocumentInformation.type).iterator();
 		String filename = "";
@@ -63,14 +54,18 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 			String feature = it.next().toString();
 			if (feature.contains("file")) {
 				int begin = feature.lastIndexOf("/") + 1;
-				int end = feature.indexOf(".xml");
+				int end = feature.length();
+				if (feature.contains(".xml"))
+					end = feature.indexOf(".xml");
 				filename = feature.substring(begin, end);
 			}
 		}
 
 		try {
-			ProcessingDocument procDoc = getProcessingDocument(docText);
-			List<TokenSequence> tokenSequences = procDoc.getTokenSequences();
+			IProcessingDocument procDoc = ProcessingDocumentFactory
+					.getInstance().makeTokenisedDocument(
+							Tokeniser.getInstance(), docText);
+			List<ITokenSequence> tokenSequences = procDoc.getTokenSequences();
 			List<org.u_compare.shared.syntactic.Token> syntaxTokens = new ArrayList<org.u_compare.shared.syntactic.Token>();
 			List<String> oscarTokenList = getOscarTokens(tokenSequences);
 
@@ -84,8 +79,8 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 			/*******
 			 *** Create oscartokens from syntactic tokens
 			 ***********/
-			List<Token> oscarTokens = convertSyntaxToOscarTokens(aJCas);
-			List<TokenSequence> toxicList = makeTokenSequences(docText,
+			List<IToken> oscarTokens = convertSyntaxToOscarTokens(aJCas);
+			List<ITokenSequence> toxicList = makeTokenSequences(docText,
 					oscarTokens);
 
 			Entities = MER.findNamedEntities(toxicList);
@@ -113,7 +108,7 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 					confAnnot = (float) namedEntity.getConfidence();
 				}
 
-				String oscarType = namedEntity.getType();
+				String oscarType = namedEntity.getType().getName();
 
 				if (oscarType.equals("CM")) {
 
@@ -121,7 +116,8 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 					annMeta.setConfidence(confAnnot);
 					cm.setMetadata(annMeta);
 					cm.addToIndexes();
-					out.write(namedEntity.getSurface() + " : " + confAnnot+"\n");
+					out.write(namedEntity.getSurface() + " : " + confAnnot
+							+ "\n");
 					//
 				} else if (oscarType.equals("RN")) {
 					RN rn = new RN(aJCas, beginAnnot, endAnnot);
@@ -158,52 +154,26 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 
 	}
 
-	// private Map<String, String> getNormalisedMap(String docText) {
-	// Map<String, String> normalisedWordMap = new HashMap<String, String>();
-	// int wordBegin = 0;
-	// int wordEnd = 0;
-	// int startIndex = 0;
-	// String newDocText = docText.replace("<HEADER>",
-	// " <HEADER> ").replace("</HEADER>", " </HEADER> ").replace("<DIV>",
-	// " <DIV> ").replace("</DIV>", " </DIV> ") ;
-	// for (String word : newDocText.split(" ")) {
-	// if ((word.contains("<B>") || (word.contains("<IT>") || (word
-	// .contains("<SB>") || (word.contains("<SP>"))))) &
-	// (!word.contains("TABLE"))
-	// &(!word.contains("TGROUP"))&(!word.contains("ENTRY"))&(!word.contains("FIGURE"))&(!word.contains("XREF"))
-	// &(!word.contains("XREF"))) {
-	// wordBegin = docText.indexOf(word, startIndex);
-	// wordEnd = word.length();
-	// startIndex = wordEnd;
-	// //TaggedWord tw = new TaggedWord(word, wordBegin, wordEnd);
-	// normalisedWordMap.put(tw.getNormalisedWord(), tw.getOriginalWord());
-	// //
-	// System.out.println(tw.getNormalisedWord()+" :: "+tw.getOriginalWord());
-	// }
-	// }
-	// return normalisedWordMap;
-	// }
-
-	private String makeSourceString(List<TokenSequence> tokenSequences) {
+	private String makeSourceString(List<ITokenSequence> tokenSequences) {
 		String sourceString = "";
-		for (TokenSequence tokenSequence : tokenSequences) {
-			sourceString += tokenSequence.getSourceString() + " ";
+		for (ITokenSequence tokenSequence : tokenSequences) {
+			sourceString += tokenSequence.getSurface() + " ";
 		}
 
 		return sourceString;
 	}
 
-	public List<TokenSequence> postProcess(List<TokenSequence> toxicList) {
+	public List<ITokenSequence> postProcess(List<ITokenSequence> toxicList) {
 
-		List<TokenSequence> newToxicList = new ArrayList<TokenSequence>();
+		List<ITokenSequence> newToxicList = new ArrayList<ITokenSequence>();
 
-		for (TokenSequence tokenSequence : toxicList) {
-			for (Token token : tokenSequence.getTokens()) {
-				token.tokenSequence = tokenSequence;
+		for (ITokenSequence tokenSequence : toxicList) {
+			for (IToken token : tokenSequence.getTokens()) {
+				token.setTokenSequence(tokenSequence);
 
 			}
-			TokenSequence newToxic = new TokenSequence(tokenSequence
-					.getSourceString(), tokenSequence.getOffset(),
+			TokenSequence newToxic = new TokenSequence(
+					tokenSequence.getSurface(), tokenSequence.getOffset(),
 					tokenSequence.getDoc(), tokenSequence.getTokens());
 			newToxicList.add(newToxic);
 		}
@@ -211,26 +181,26 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 		return newToxicList;
 	}
 
-	public List<TokenSequence> makeTokenSequences(String docText,
-			List<Token> oscarTokens) {
+	public List<ITokenSequence> makeTokenSequences(String docText,
+			List<IToken> oscarTokens) {
 
 		TokenSequence toxic = new TokenSequence(docText, 0, null, oscarTokens);
 
-		List<TokenSequence> toxicList = new ArrayList<TokenSequence>();
+		List<ITokenSequence> toxicList = new ArrayList<ITokenSequence>();
 		toxicList.add(toxic);
 		toxicList = postProcess(toxicList);
 
 		return toxicList;
 	}
 
-	public List<Token> convertSyntaxToOscarTokens(JCas aJCas) {
+	public List<IToken> convertSyntaxToOscarTokens(JCas aJCas) {
 		FSIndex tokenIndex = aJCas
 				.getAnnotationIndex(org.u_compare.shared.syntactic.Token.type);
 		FSIterator tokenIterator = tokenIndex.iterator();
 
 		int id = 0;
 		int counter = 0;
-		List<Token> oscarTokens = new LinkedList<Token>();
+		List<IToken> oscarTokens = new LinkedList<IToken>();
 		boolean endFlag = true;
 		String regex = "<[a-zA-Z\\/][^>]*>";
 
@@ -240,14 +210,8 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 			org.u_compare.shared.syntactic.Token syntaxToken = (org.u_compare.shared.syntactic.Token) tokenIterator
 					.get();
 			String tokenValue = syntaxToken.getCoveredText();
-			// if ((tokenValue.contains("<B>") || (tokenValue.contains("<IT>")
-			// || (tokenValue
-			// .contains("<SB>") || (tokenValue.contains("<SP>")))))) {
-			// tokenValue = tokenValue.replaceAll(regex, "");
-			//
-			// }
-			Token oscarTok = new Token(tokenValue, syntaxToken.getBegin(),
-					syntaxToken.getEnd(), null, "O", null);
+			IToken oscarTok = new Token(tokenValue, syntaxToken.getBegin(),
+					syntaxToken.getEnd(), null, null, null);
 
 			oscarTok.setId(id);
 
@@ -273,7 +237,7 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 		List<org.u_compare.shared.syntactic.Token> syntaxTokens = new ArrayList<org.u_compare.shared.syntactic.Token>();
 		for (String oscarValue : oscarTokenList) {
 			oscarValue = org.apache.commons.lang.StringEscapeUtils
-			.escapeHtml(oscarValue);
+					.escapeHtml(oscarValue);
 
 			tokeniseIndex = docText.indexOf(oscarValue, lastFoundIndex);
 			if (tokeniseIndex == -1) {
@@ -282,8 +246,6 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 				tokeniseIndex = docText.indexOf(oscarValue, lastFoundIndex);
 
 			}
-
-
 
 			if (tokeniseIndex > 0) {
 				org.u_compare.shared.syntactic.Token tok = new org.u_compare.shared.syntactic.Token(
@@ -296,80 +258,39 @@ public class OscarMER extends JTextAnnotator_ImplBase {
 			}
 
 			else {
-				 System.err.println("What is this i am not supposed to be here "
-				 + oscarValue);
+				System.err.println("What is this i am not supposed to be here "
+						+ oscarValue);
 			}
 		}
 		return syntaxTokens;
 	}
 
-	public List<String> getOscarTokens(List<TokenSequence> tokenSequences) {
+	public List<String> getOscarTokens(List<ITokenSequence> tokenSequences) {
 		List<String> oscarTokenList = new ArrayList<String>();
 
 		for (int j = 0; j < tokenSequences.size(); j++) {
-			TokenSequence tokenSequence = tokenSequences.get(j);
+			ITokenSequence tokenSequence = tokenSequences.get(j);
 
-			for (Token oscarToken : tokenSequence.getTokens()) {
-				// System.out.println(oscarToken.getValue());
+			for (IToken oscarToken : tokenSequence.getTokens()) {
 				String oscarValue = oscarToken.getValue();
 
 				oscarTokenList.add(oscarValue);
-
-				// String oscarValue =
-				// org.apache.commons.lang.StringEscapeUtils.unescapeHtml(oscarToken.getValue());
 
 			}
 		}
 		return oscarTokenList;
 	}
 
-	private ProcessingDocument getProcessingDocument(String docText)
-			throws ParsingException, ValidityException, IOException, Exception {
-		Document sourceDoc = new Builder().build(docText, "");
-		// Document sourceDoc = TextToSciXML.textToSciXML(docText);
-
-		ProcessingDocument procDoc = ProcessingDocumentFactory.getInstance()
-				.makeTokenisedDocument(sourceDoc, true, true, false);
-		List<Token> oscarTokenList = null;
-		try {
-			procDoc = new ProcessingDocumentFactory().makeTokenisedDocument(
-					sourceDoc, true, false, false);
-		} catch (Exception e) {
-			System.err.println("Can't find file, please check your path");
-			e.printStackTrace();
-		}
-		return procDoc;
-	}
-
-	//
-	// public void writeToFile(String filename){
-	// try {
-	// FileWriter outFile = new FileWriter(filename);
-	// PrintWriter out = new PrintWriter(outFile);
-	//
-	// // Also could be written as follows on one line
-	// // Printwriter out = new PrintWriter(new FileWriter(args[0]));
-	//
-	// // Write text to file
-	// out.println("This is line 1");
-	// out.println("This is line 2");
-	// out.print("This is line3 part 1, ");
-	// out.println("this is line 3 part 2");
-	// out.close();
-	// } catch (IOException e){
-	// e.printStackTrace();
-	// }
-	// }
-	private List<Token> createOscarTokens(
+	private List<IToken> createOscarTokens(
 			List<org.u_compare.shared.syntactic.Token> syntacticTokens) {
 
-		List<Token> oscarTokens = new LinkedList<Token>();
+		List<IToken> oscarTokens = new LinkedList<IToken>();
 		int id = 0;
 		for (org.u_compare.shared.syntactic.Token syntaxToken : syntacticTokens)
 
 		{
-			Token oscarTok = new Token(syntaxToken.getCoveredText(),
-					syntaxToken.getBegin(), syntaxToken.getEnd(), null, "0",
+			IToken oscarTok = new Token(syntaxToken.getCoveredText(),
+					syntaxToken.getBegin(), syntaxToken.getEnd(), null, null,
 					null);
 			oscarTok.setId(id);
 			oscarTokens.add(oscarTok);
