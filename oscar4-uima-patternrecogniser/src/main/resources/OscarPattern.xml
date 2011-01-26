@@ -19,7 +19,9 @@
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs/>
+        <inputs>
+          <type allAnnotatorFeatures="true">org.u_compare.shared.syntactic.Token</type>
+        </inputs>
         <outputs>
           <type allAnnotatorFeatures="true">uk.ac.nactem.cheta.RN</type>
           <type allAnnotatorFeatures="true">uk.ac.nactem.cheta.ONT</type>
