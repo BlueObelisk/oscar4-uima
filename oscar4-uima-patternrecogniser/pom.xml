@@ -12,6 +12,28 @@
 
 	<artifactId>oscar4-uima-patternrecogniser</artifactId>
 	<name>oscar4-uima-patternrecogniser</name>
+	
+		<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>
+							jar-with-dependencies
+						</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>
+								uk.ac.nactem.cheta.OscarUimaPattern
+							</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>

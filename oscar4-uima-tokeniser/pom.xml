@@ -12,4 +12,26 @@
 	<artifactId>oscar4-uima-tokenizer</artifactId>
 	<name>oscar4-uima-tokenizer</name>
 
+<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>
+							jar-with-dependencies
+						</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>
+								uk.ac.nactem.cheta.OscarUIMATokenizer
+							</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
