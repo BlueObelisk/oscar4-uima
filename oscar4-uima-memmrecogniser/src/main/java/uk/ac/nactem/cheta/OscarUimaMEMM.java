@@ -22,6 +22,7 @@ import uk.ac.cam.ch.wwmm.oscar.document.NamedEntity;
 import uk.ac.cam.ch.wwmm.oscar.document.ProcessingDocument;
 import uk.ac.cam.ch.wwmm.oscar.document.Token;
 import uk.ac.cam.ch.wwmm.oscar.document.TokenSequence;
+import uk.ac.cam.ch.wwmm.oscar.exceptions.ResourceInitialisationException;
 import uk.ac.cam.ch.wwmm.oscarMEMM.MEMMRecogniser;
 public class OscarUimaMEMM extends JTextAnnotator_ImplBase {
 	private   MEMMRecogniser memmRecogniser;
@@ -118,7 +119,7 @@ public class OscarUimaMEMM extends JTextAnnotator_ImplBase {
 
 	}
 
-	public List<NamedEntity> recogniseNEs(JCas aJCas, String docText) {
+	public List<NamedEntity> recogniseNEs(JCas aJCas, String docText) throws ResourceInitialisationException {
 		List<IToken> oscarTokens = convertSyntaxToOscarTokens(aJCas);
 		
 		List<ITokenSequence> toxicList = makeTokenSequences(docText,
