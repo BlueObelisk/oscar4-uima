@@ -77,6 +77,8 @@ public class OscarUIMATokenizer extends JTextAnnotator_ImplBase {
 		return syntaxTokens;
 	}
 
+	
+	
 	public List<String> getOscarTokens(String docText) {
 				
 		IProcessingDocument procDoc = ProcessingDocumentFactory.getInstance()
