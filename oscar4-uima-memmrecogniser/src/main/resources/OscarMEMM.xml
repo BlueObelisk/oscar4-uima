@@ -5,7 +5,7 @@
   <annotatorImplementationName>uk.ac.nactem.cheta.OscarUimaMEMM</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>OscarMEMM</name>
-    <description/>
+    <description>Runs Oscar4 with maximum entropy based recogniser with syntactic tokens as input</description>
     <version>1.0</version>
     <vendor/>
     <configurationParameters/>
