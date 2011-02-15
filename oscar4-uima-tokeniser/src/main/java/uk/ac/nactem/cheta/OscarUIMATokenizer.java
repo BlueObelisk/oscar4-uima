@@ -92,7 +92,7 @@ public class OscarUIMATokenizer extends JTextAnnotator_ImplBase {
 			ITokenSequence tokenSequence = tokenSequences.get(j);
 
 			for (IToken oscarToken : tokenSequence.getTokens()) {
-				String oscarValue = oscarToken.getValue();
+				String oscarValue = oscarToken.getSurface();
 				oscarTokenList.add(oscarValue);
 			}
 		}
