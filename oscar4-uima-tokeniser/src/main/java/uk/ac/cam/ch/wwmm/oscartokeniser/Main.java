@@ -1,4 +1,4 @@
-package uk.ac.cam.ch.wwmm.oscartokenizer;
+package uk.ac.cam.ch.wwmm.oscartokeniser;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

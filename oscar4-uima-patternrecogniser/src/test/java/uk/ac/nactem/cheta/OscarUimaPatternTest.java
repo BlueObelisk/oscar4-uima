@@ -55,7 +55,7 @@ public class OscarUimaPatternTest {
 
 		File dir = new File(ClassLoader.getSystemResource(patternFolder)
 				.getFile());
-		OscarUIMATokenizer uimaTokenizer = new OscarUIMATokenizer();
+		OscarUIMATokeniser uimaTokeniser = new OscarUIMATokeniser();
 		String filenames[] = dir.list();
 		for (String tokeniseFile : filenames) {
 			JCas aJCas = createJCas();
@@ -63,7 +63,7 @@ public class OscarUimaPatternTest {
             String docText = getContentAsString(patternPath);
 			
 			aJCas.setDocumentText(docText);
-			List<String> oscarTokenList = uimaTokenizer.getOscarTokens(docText);
+			List<String> oscarTokenList = uimaTokeniser.getOscarTokens(docText);
 			uimaMEMM.convertOscarToSyntaxTokens(oscarTokenList, docText,
 					aJCas);
 			
@@ -106,9 +106,9 @@ public class OscarUimaPatternTest {
 		List<NamedEntity> neList = new ArrayList<NamedEntity>();
 		try {
 			text = oscar.normalize(text);
-			List<ITokenSequence> tokens = oscar.tokenize(text);
+			List<ITokenSequence> tokens = oscar.tokenise(text);
 			oscar.setRecogniser(new PatternRecogniser());
-			neList = oscar.recognizeNamedEntities(tokens);
+			neList = oscar.recogniseNamedEntities(tokens);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

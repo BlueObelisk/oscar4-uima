@@ -18,11 +18,11 @@ import uk.ac.cam.ch.wwmm.oscar.document.ITokenSequence;
 import uk.ac.cam.ch.wwmm.oscar.document.ProcessingDocumentFactory;
 import uk.ac.cam.ch.wwmm.oscartokeniser.Tokeniser;
 
-public class OscarUIMATokenizer extends JTextAnnotator_ImplBase {
+public class OscarUIMATokeniser extends JTextAnnotator_ImplBase {
 
 	String localNE;
 	int index = 0;
-	private static final Logger LOG = Logger.getLogger(OscarUIMATokenizer.class);
+	private static final Logger LOG = Logger.getLogger(OscarUIMATokeniser.class);
 
 	public void initialize(AnnotatorContext aContext)
 			throws AnnotatorInitializationException,
