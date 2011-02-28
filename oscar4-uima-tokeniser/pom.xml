@@ -33,5 +33,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>ch.unibe.jexample</groupId>
+			<artifactId>jexample</artifactId>
+			<version>4.4-378</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 </project>

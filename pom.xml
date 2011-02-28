@@ -34,11 +34,6 @@
 			<url>https://maven.ch.cam.ac.uk/m2repo</url>
 		</repository>
 		<repository>
-			<id>jexample-repo</id>
-			<name>JExample Maven repository</name>
-			<url>http://scg.unibe.ch/download/jexample/maven/</url>
-		</repository>
-		<repository>
 			<id>UCompare-repo</id>
 			<name>U-Compare Maven repository</name>
 			<url>http://u-compare.org/repository/</url>
