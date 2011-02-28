@@ -28,15 +28,15 @@ import ch.unibe.jexample.JExample;
 
 @RunWith(JExample.class)
 
-public class OscarUIMATokenizerTest {
+public class OscarUIMATokeniserTest {
 
 	private static String tokeniseFolder = "uk/ac/nactem/cheta/tokenization/";
 	private static final Logger LOG = Logger
-			.getLogger(OscarUIMATokenizerTest.class);
+			.getLogger(OscarUIMATokeniserTest.class);
 
 	@Test
-	public OscarUIMATokenizer testConstructor() throws Exception {
-		OscarUIMATokenizer oscarUIMATokenizer = new OscarUIMATokenizer();
+	public OscarUIMATokeniser testConstructor() throws Exception {
+		OscarUIMATokeniser oscarUIMATokenizer = new OscarUIMATokeniser();
 		Assert.assertNotNull(oscarUIMATokenizer);
 		return oscarUIMATokenizer;
 	}
@@ -48,7 +48,7 @@ public class OscarUIMATokenizerTest {
 	 * to see if JCAS alters the input
 	 * of text in anyway
 	 */
-	public String[] testUIMAOscarTokenisation(OscarUIMATokenizer oscarUIMATokenizer)
+	public String[] testUIMAOscarTokenisation(OscarUIMATokeniser oscarUIMATokenizer)
 			throws ValidityException, ParsingException, IOException, Exception {
 
 		
@@ -79,7 +79,7 @@ public class OscarUIMATokenizerTest {
 	 * output as oscar tokenisation
 	 * 
 	 ************************************************/
-	public void testOscarSyntaxTokens(OscarUIMATokenizer oscarUIMATokenizer,
+	public void testOscarSyntaxTokens(OscarUIMATokeniser oscarUIMATokenizer,
 			String[] filenames) throws ValidityException, ParsingException,
 			IOException, Exception {
 		for (String tokeniseFile : filenames) {

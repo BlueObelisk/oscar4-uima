@@ -54,7 +54,7 @@ public class OscarUimaMEMMTest {
 
 		File dir = new File(ClassLoader.getSystemResource(memmFolder)
 				.getFile());
-		OscarUIMATokenizer uimaTokenizer = new OscarUIMATokenizer();
+		OscarUIMATokeniser uimaTokeniser = new OscarUIMATokeniser();
 		String filenames[] = dir.list();
 		for (String tokeniseFile : filenames) {
 			JCas aJCas = createJCas();
@@ -62,7 +62,7 @@ public class OscarUimaMEMMTest {
             String docText = getContentAsString(memmPath);
 			
 			aJCas.setDocumentText(docText);
-			List<String> oscarTokenList = uimaTokenizer.getOscarTokens(docText);
+			List<String> oscarTokenList = uimaTokeniser.getOscarTokens(docText);
 			uimaMEMM.convertOscarToSyntaxTokens(oscarTokenList, docText,
 					aJCas);
 			
@@ -105,8 +105,8 @@ public class OscarUimaMEMMTest {
 		List<NamedEntity> neList = new ArrayList<NamedEntity>();
 		try {
 			text = oscar.normalize(text);
-			List<ITokenSequence> tokens = oscar.tokenize(text);
-			neList = oscar.recognizeNamedEntities(tokens);
+			List<ITokenSequence> tokens = oscar.tokenise(text);
+			neList = oscar.recogniseNamedEntities(tokens);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
