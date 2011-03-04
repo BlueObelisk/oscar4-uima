@@ -82,7 +82,7 @@ public class OscarUIMATokeniser extends JTextAnnotator_ImplBase {
 	public List<String> getOscarTokens(String docText) {
 				
 		IProcessingDocument procDoc = ProcessingDocumentFactory.getInstance()
-				.makeTokenisedDocument(Tokeniser.getInstance(), docText);
+				.makeTokenisedDocument(Tokeniser.getDefaultInstance(), docText);
 
 		List<ITokenSequence> tokenSequences = procDoc.getTokenSequences();
 
