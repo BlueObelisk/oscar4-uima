@@ -37,6 +37,9 @@
 			<id>UCompare-repo</id>
 			<name>U-Compare Maven repository</name>
 			<url>http://u-compare.org/repository/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 
 	</repositories>
