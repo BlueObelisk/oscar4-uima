@@ -105,7 +105,8 @@ public class OscarUimaPatternTest {
 		Oscar oscar = new Oscar();
 		List<NamedEntity> neList = new ArrayList<NamedEntity>();
 		try {
-			text = oscar.normalize(text);
+			//TODO oscar.normalise isn't implemented yet!
+//			text = oscar.normalise(text);
 			List<ITokenSequence> tokens = oscar.tokenise(text);
 			oscar.setRecogniser(new PatternRecogniser());
 			neList = oscar.recogniseNamedEntities(tokens);
