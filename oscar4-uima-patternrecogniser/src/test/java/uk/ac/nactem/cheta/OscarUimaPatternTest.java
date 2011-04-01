@@ -27,7 +27,7 @@ import org.uimafit.factory.AnalysisEngineFactory;
 import org.uimafit.factory.TypeSystemDescriptionFactory;
 
 import uk.ac.cam.ch.wwmm.oscar.Oscar;
-import uk.ac.cam.ch.wwmm.oscar.document.ITokenSequence;
+import uk.ac.cam.ch.wwmm.oscar.document.TokenSequence;
 import uk.ac.cam.ch.wwmm.oscar.document.NamedEntity;
 import uk.ac.cam.ch.wwmm.oscarpattern.PatternRecogniser;
 import ch.unibe.jexample.Given;
@@ -107,7 +107,7 @@ public class OscarUimaPatternTest {
 		try {
 			//TODO oscar.normalise isn't implemented yet!
 //			text = oscar.normalise(text);
-			List<ITokenSequence> tokens = oscar.tokenise(text);
+			List<TokenSequence> tokens = oscar.tokenise(text);
 			oscar.setRecogniser(new PatternRecogniser());
 			neList = oscar.recogniseNamedEntities(tokens);
 		} catch (Exception e) {

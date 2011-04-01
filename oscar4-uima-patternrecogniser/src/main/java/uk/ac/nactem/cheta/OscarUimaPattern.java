@@ -16,8 +16,6 @@ import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.u_compare.shared.AnnotationMetadata;
 
-import uk.ac.cam.ch.wwmm.oscar.document.IToken;
-import uk.ac.cam.ch.wwmm.oscar.document.ITokenSequence;
 import uk.ac.cam.ch.wwmm.oscar.document.NamedEntity;
 import uk.ac.cam.ch.wwmm.oscar.document.ProcessingDocument;
 import uk.ac.cam.ch.wwmm.oscar.document.Token;
@@ -119,20 +117,20 @@ public class OscarUimaPattern extends JTextAnnotator_ImplBase {
 	}
 
 	public List<NamedEntity> recogniseNEs(JCas aJCas, String docText)  {
-		List<IToken> oscarTokens = convertSyntaxToOscarTokens(aJCas);
+		List<Token> oscarTokens = convertSyntaxToOscarTokens(aJCas);
 		
-		List<ITokenSequence> toxicList = makeTokenSequences(docText,
+		List<TokenSequence> toxicList = makeTokenSequences(docText,
 				oscarTokens);
        
 		return patternRecogniser.findNamedEntities(toxicList);
 	}
 
-	public List<ITokenSequence> postProcess(List<ITokenSequence> toxicList) {
+	public List<TokenSequence> postProcess(List<TokenSequence> toxicList) {
 
-		List<ITokenSequence> newToxicList = new ArrayList<ITokenSequence>();
+		List<TokenSequence> newToxicList = new ArrayList<TokenSequence>();
 
-		for (ITokenSequence tokenSequence : toxicList) {
-			for (IToken token : tokenSequence.getTokens()) {
+		for (TokenSequence tokenSequence : toxicList) {
+			for (Token token : tokenSequence.getTokens()) {
 				token.setTokenSequence(tokenSequence);
 
 			}
@@ -145,26 +143,26 @@ public class OscarUimaPattern extends JTextAnnotator_ImplBase {
 		return newToxicList;
 	}
 
-	public List<ITokenSequence> makeTokenSequences(String docText,
-			List<IToken> oscarTokens) {
+	public List<TokenSequence> makeTokenSequences(String docText,
+			List<Token> oscarTokens) {
 
 		TokenSequence toxic = new TokenSequence(docText, 0, null, oscarTokens);
 
-		List<ITokenSequence> toxicList = new ArrayList<ITokenSequence>();
+		List<TokenSequence> toxicList = new ArrayList<TokenSequence>();
 		toxicList.add(toxic);
 		toxicList = postProcess(toxicList);
 
 		return toxicList;
 	}
 
-	public List<IToken> convertSyntaxToOscarTokens(JCas aJCas) {
+	public List<Token> convertSyntaxToOscarTokens(JCas aJCas) {
 		FSIndex tokenIndex = aJCas
 				.getAnnotationIndex(org.u_compare.shared.syntactic.Token.type);
 		FSIterator tokenIterator = tokenIndex.iterator();
 
-		int id = 0;
+		int index = 0;
 		int counter = 0;
-		List<IToken> oscarTokens = new LinkedList<IToken>();
+		List<Token> oscarTokens = new LinkedList<Token>();
 		boolean endFlag = true;
 		String regex = "<[a-zA-Z\\/][^>]*>";
 
@@ -174,15 +172,15 @@ public class OscarUimaPattern extends JTextAnnotator_ImplBase {
 			org.u_compare.shared.syntactic.Token syntaxToken = (org.u_compare.shared.syntactic.Token) tokenIterator
 					.get();
 			String tokenValue = syntaxToken.getCoveredText();
-			IToken oscarTok = new Token(tokenValue, syntaxToken.getBegin(),
+			Token oscarTok = new Token(tokenValue, syntaxToken.getBegin(),
 					syntaxToken.getEnd(), null, null, null);
 
-			oscarTok.setId(id);
+			oscarTok.setIndex(index);
 
 			oscarTokens.add(oscarTok);
-			id++;
+			index++;
 			if (syntaxToken.getCoveredText().equals(".") & !endFlag) {
-				id = 0;
+				index = 0;
 				endFlag = true;
 			}
 			tokenIterator.moveToNext();
@@ -229,13 +227,13 @@ public class OscarUimaPattern extends JTextAnnotator_ImplBase {
 		return syntaxTokens;
 	}
 
-	public List<String> getOscarTokens(List<ITokenSequence> tokenSequences) {
+	public List<String> getOscarTokens(List<TokenSequence> tokenSequences) {
 		List<String> oscarTokenList = new ArrayList<String>();
 
 		for (int j = 0; j < tokenSequences.size(); j++) {
-			ITokenSequence tokenSequence = tokenSequences.get(j);
+			TokenSequence tokenSequence = tokenSequences.get(j);
 
-			for (IToken oscarToken : tokenSequence.getTokens()) {
+			for (Token oscarToken : tokenSequence.getTokens()) {
 				String oscarValue = oscarToken.getSurface();
 
 				oscarTokenList.add(oscarValue);
@@ -245,20 +243,20 @@ public class OscarUimaPattern extends JTextAnnotator_ImplBase {
 		return oscarTokenList;
 	}
 
-	private List<IToken> createOscarTokens(
+	private List<Token> createOscarTokens(
 			List<org.u_compare.shared.syntactic.Token> syntacticTokens) {
 
-		List<IToken> oscarTokens = new LinkedList<IToken>();
-		int id = 0;
+		List<Token> oscarTokens = new LinkedList<Token>();
+		int index = 0;
 		for (org.u_compare.shared.syntactic.Token syntaxToken : syntacticTokens)
 
 		{
-			IToken oscarTok = new Token(syntaxToken.getCoveredText(),
+			Token oscarTok = new Token(syntaxToken.getCoveredText(),
 					syntaxToken.getBegin(), syntaxToken.getEnd(), null, null,
 					null);
-			oscarTok.setId(id);
+			oscarTok.setIndex(index);
 			oscarTokens.add(oscarTok);
-			id++;
+			index++;
 		}
 
 		return oscarTokens;
