@@ -27,8 +27,8 @@ import org.uimafit.factory.AnalysisEngineFactory;
 import org.uimafit.factory.TypeSystemDescriptionFactory;
 
 import uk.ac.cam.ch.wwmm.oscar.Oscar;
-import uk.ac.cam.ch.wwmm.oscar.document.ITokenSequence;
 import uk.ac.cam.ch.wwmm.oscar.document.NamedEntity;
+import uk.ac.cam.ch.wwmm.oscar.document.TokenSequence;
 import ch.unibe.jexample.Given;
 import ch.unibe.jexample.JExample;
 
@@ -106,7 +106,7 @@ public class OscarUimaMEMMTest {
 		try {
 			//TODO oscar.normalise isn't implemented yet!
 //			text = oscar.normalise(text);
-			List<ITokenSequence> tokens = oscar.tokenise(text);
+			List<TokenSequence> tokens = oscar.tokenise(text);
 			neList = oscar.recogniseNamedEntities(tokens);
 		} catch (Exception e) {
 			e.printStackTrace();

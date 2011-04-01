@@ -13,9 +13,9 @@ import org.apache.uima.analysis_engine.annotator.JTextAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
 
 import uk.ac.cam.ch.wwmm.oscar.document.IProcessingDocument;
-import uk.ac.cam.ch.wwmm.oscar.document.IToken;
-import uk.ac.cam.ch.wwmm.oscar.document.ITokenSequence;
 import uk.ac.cam.ch.wwmm.oscar.document.ProcessingDocumentFactory;
+import uk.ac.cam.ch.wwmm.oscar.document.Token;
+import uk.ac.cam.ch.wwmm.oscar.document.TokenSequence;
 import uk.ac.cam.ch.wwmm.oscartokeniser.Tokeniser;
 
 public class OscarUIMATokeniser extends JTextAnnotator_ImplBase {
@@ -84,14 +84,14 @@ public class OscarUIMATokeniser extends JTextAnnotator_ImplBase {
 		IProcessingDocument procDoc = ProcessingDocumentFactory.getInstance()
 				.makeTokenisedDocument(Tokeniser.getDefaultInstance(), docText);
 
-		List<ITokenSequence> tokenSequences = procDoc.getTokenSequences();
+		List<TokenSequence> tokenSequences = procDoc.getTokenSequences();
 
 		List<String> oscarTokenList = new ArrayList<String>();
 
 		for (int j = 0; j < tokenSequences.size(); j++) {
-			ITokenSequence tokenSequence = tokenSequences.get(j);
+			TokenSequence tokenSequence = tokenSequences.get(j);
 
-			for (IToken oscarToken : tokenSequence.getTokens()) {
+			for (Token oscarToken : tokenSequence.getTokens()) {
 				String oscarValue = oscarToken.getSurface();
 				oscarTokenList.add(oscarValue);
 			}
