@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
 		<artifactId>oscar4-uima</artifactId>
-		<version>4.0-SNAPSHOT</version>
+		<version>${oscar-uima.version}</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>uk.ac.cam.ch.wwmm.oscar</groupId>
 			<artifactId>oscar4-uima-tokenizer</artifactId>
-			<version>4.0-SNAPSHOT</version>
+			<version>${oscar-uima.version}</version>
 		</dependency>
 			<dependency>
 			<groupId>ch.unibe.jexample</groupId>
