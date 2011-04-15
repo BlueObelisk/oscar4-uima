@@ -19,8 +19,8 @@
 	<properties>
 		<uima.version>2.2.2-incubating</uima.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<oscar.version>4.0-SNAPSHOT</oscar.version>
-		<oscar-uima.version>4.0-SNAPSHOT</oscar-uima.version>
+		<oscar.version>4.0.1</oscar.version>
+		<oscar-uima.version>4.0.1</oscar-uima.version>
 	</properties>
 	<modules>
 		<module>oscar4-uima-tokeniser</module>
