@@ -31,7 +31,6 @@ import uk.ac.cam.ch.wwmm.oscar.document.NamedEntity;
 import uk.ac.cam.ch.wwmm.oscar.document.TokenSequence;
 import ch.unibe.jexample.Given;
 import ch.unibe.jexample.JExample;
-
 @RunWith(JExample.class)
 public class OscarUimaMEMMTest {
 
@@ -100,11 +99,9 @@ public class OscarUimaMEMMTest {
 	}
 
 	private List<NamedEntity> getOscarEntities(String text) {
-		// TODO Auto-generated method stub
 		Oscar oscar = new Oscar();
 		List<NamedEntity> neList = new ArrayList<NamedEntity>();
 		try {
-			//TODO oscar.normalise isn't implemented yet!
 //			text = oscar.normalise(text);
 			List<TokenSequence> tokens = oscar.tokenise(text);
 			neList = oscar.recogniseNamedEntities(tokens);
