@@ -17,7 +17,7 @@
 
 	<name>oscar4-uima-parent</name>
 	<properties>
-		<uima.version>2.2.2-incubating</uima.version>
+		<uima.version>2.10.2</uima.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<oscar.version>4.1-SNAPSHOT</oscar.version>
 		<oscar-uima.version>4.1-SNAPSHOT</oscar-uima.version>
